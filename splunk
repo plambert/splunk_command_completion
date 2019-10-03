@@ -1,4 +1,4 @@
-function fSplunkComplete() {
+function __splunk() {
   local wordCur=${COMP_WORDS[COMP_CWORD]}
   local wordPrev=${COMP_WORDS[COMP_CWORD-1]}
   case "$wordPrev" in
@@ -50,4 +50,4 @@ function fSplunkComplete() {
   esac
 }
 complete -r splunk 2>/dev/null
-complete -F fSplunkComplete splunk
+complete -F __splunk splunk

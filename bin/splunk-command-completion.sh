@@ -3,8 +3,8 @@
 # Paul M. Lambert
 # Based on the script by Vainstein K 12aug2013
 
-DEBUG=-YES-
-completion_function=fSplunkComplete
+DEBUG="${SPLUNK_BASH_COMPLETION_DEBUG:-}"
+completion_function=__splunk
 # # # Check a few prereqs.
 # feature='"splunk <verb> <object>" tab-completion'
 if [ "${BASH_VERSION}x" == x ]; then
@@ -40,24 +40,6 @@ FAIL() {
 	[[ -t 1 ]] || printf 'return %d >/dev/null 2>&1; exit %d' "$_RC" "$_RC"
 	return "$_RC"
 }
-
-# ifSourced () { # do NOT exit(1) from this function!
-# 	local readonly tempfile=`pwd`/tmp--cli-completion--$$
-# 	rm -f $tempfile
-
-# 	$BASH ${BASH_ARGV[0]} --populateTempfile $tempfile
-# 	[ $? -eq 0 ] || return
-# 	[ -e $tempfile ] || return
-# 	. $tempfile
-# 	rm -f $tempfile
-
-# 	# # # Associate the completion function with the splunk binary.
-# 	local readonly completionFunction=fSplunkComplete
-# 	complete -r splunk 2>/dev/null
-# 	complete -F $completionFunction splunk
-
-# 	# You can view the completion function anytime via:      $ type fSplunkComplete
-# }
 
 DEBUG() {
 	[[ -z "$DEBUG" ]] && return
